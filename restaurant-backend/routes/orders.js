@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../models/Order');
+const { authenticate, authorizeAdmin } = require('../middleware/auth');
+
 
 // Create a new order
 router.post('/', async (req, res) => {
@@ -14,7 +16,7 @@ router.post('/', async (req, res) => {
 });
 
 // Get all orders
-router.get('/', async (req, res) => {
+router.get('/', authenticate, authorizeAdmin, async (req, res) => {
     try {
         const orders = await Order.find().populate('items.menuItem');
         res.status(200).json(orders);
@@ -24,7 +26,7 @@ router.get('/', async (req, res) => {
 });
 
 // Update an order
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticate, authorizeAdmin, async (req, res) => {
     try {
         const order = await Order.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!order) return res.status(404).json({ message: 'Order not found' });
@@ -35,7 +37,7 @@ router.put('/:id', async (req, res) => {
 });
 
 // Delete an order
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, authorizeAdmin, async (req, res) => {
     try {
         const order = await Order.findByIdAndDelete(req.params.id);
         if (!order) return res.status(404).json({ message: 'Order not found' });
