@@ -6,7 +6,7 @@ const { authenticate, authorizeAdmin } = require('../middleware/auth');
 
 
 // Create a new menu item
-router.post('/', authenticate, authorizeAdmin, async (req, res) => {
+router.post('/', authenticate, authorizeAdmin, async (req, res, next) => {
     try {
         const menuItem = new MenuItem(req.body);
         await menuItem.save();
