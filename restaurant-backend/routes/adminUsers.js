@@ -11,6 +11,7 @@ router.post('/register', async (req, res) => {
         res.status(201).json({ message: 'Admin user registered', adminUser });
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 
@@ -29,6 +30,7 @@ router.post('/login', async (req, res) => {
       res.status(200).json({ message: 'Login successful', token });
   } catch (err) {
       res.status(500).json({ error: err.message });
+      next(err);
   }
 });
 

@@ -12,6 +12,7 @@ router.post('/', async (req, res) => {
         res.status(201).json({ message: 'Order created', order });
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 
@@ -22,6 +23,7 @@ router.get('/', authenticate, authorizeAdmin, async (req, res) => {
         res.status(200).json(orders);
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 
@@ -33,6 +35,7 @@ router.put('/:id', authenticate, authorizeAdmin, async (req, res) => {
         res.status(200).json(order);
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 
@@ -44,6 +47,7 @@ router.delete('/:id', authenticate, authorizeAdmin, async (req, res) => {
         res.status(200).json({ message: 'Order deleted', order });
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 

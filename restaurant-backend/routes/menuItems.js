@@ -4,6 +4,7 @@ const MenuItem = require('../models/MenuItem');
 const { authenticate, authorizeAdmin } = require('../middleware/auth');
 
 
+
 // Create a new menu item
 router.post('/', authenticate, authorizeAdmin, async (req, res) => {
     try {
@@ -12,6 +13,7 @@ router.post('/', authenticate, authorizeAdmin, async (req, res) => {
         res.status(201).json({ message: 'Menu item created', menuItem });
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 
@@ -22,6 +24,7 @@ router.get('/', async (req, res) => {
         res.status(200).json(menuItems);
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 
@@ -33,6 +36,7 @@ router.put('/:id', authenticate, authorizeAdmin, async (req, res) => {
         res.status(200).json(menuItem);
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 
@@ -44,6 +48,7 @@ router.delete('/:id', authenticate, authorizeAdmin, async (req, res) => {
         res.status(200).json({ message: 'Menu item deleted', menuItem });
     } catch (err) {
         res.status(500).json({ error: err.message });
+        next(err);
     }
 });
 

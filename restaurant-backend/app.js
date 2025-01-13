@@ -12,6 +12,9 @@ const menuItemsRouter = require('./routes/menuItems');
 const ordersRouter = require('./routes/orders');
 const adminUsersRouter = require('./routes/adminUsers');
 
+// Import error handler
+const errorHandler = require('./middleware/errorHandler');
+
 var app = express();
 
 // Connect to MongoDB
@@ -34,5 +37,8 @@ app.use('/', indexRouter);
 app.use('/api/menu-items', menuItemsRouter);
 app.use('/api/orders', ordersRouter);
 app.use('/api/admin-users', adminUsersRouter);
+
+// Error handling middleware (last middleware)
+app.use(errorHandler);
 
 module.exports = app;
