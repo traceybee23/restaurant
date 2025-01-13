@@ -8,7 +8,9 @@ var logger = require('morgan');
 var cors = require('cors'); // Import CORS
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const menuItemsRouter = require('./routes/menuItems');
+const ordersRouter = require('./routes/orders');
+const adminUsersRouter = require('./routes/adminUsers');
 
 var app = express();
 
@@ -29,6 +31,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Routes
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/api/menu-items', menuItemsRouter);
+app.use('/api/orders', ordersRouter);
+app.use('/api/admin-users', adminUsersRouter);
 
 module.exports = app;
