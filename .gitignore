@@ -1,0 +1,32 @@
+# Node Modules
+node_modules/
+
+# Build Directory
+dist/
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editor Directories and Files
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# OS-Specific Files
+.DS_Store
+Thumbs.db
+
+# Temporary Files
+*.temp
+*.tmp
