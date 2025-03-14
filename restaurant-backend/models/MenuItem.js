@@ -25,6 +25,12 @@ const menuItemSchema = new mongoose.Schema({
                     name: { type: String },
                     price: { type: Number }
                 }
+            ],
+            hotdogStyles: [
+                {
+                    name: { type: String },
+                    description: { type: String }
+                }
             ]
         },
         default: undefined // Ensures `options` is only included if data is provided

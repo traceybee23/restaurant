@@ -292,6 +292,25 @@ const seedData = async () => {
                         { name: "Chicken", price: 2.99 }
                     ]
                 }
+            },
+            {
+                name: "Hotdogs with Fries",
+                description: "Your choice of hotdog served with seasoned fries.",
+                category: "Hotdogs",
+                price: null, // Price is determined by selected size
+                availability: true,
+                options: {
+                    sizes: [
+                        { size: "1 Hotdog w/ Fries", price: 8.99 },
+                        { size: "2 Hotdogs w/ Fries", price: 13.99 }
+                    ],
+                    hotdogStyles: [
+                        { name: "American", description: "Ketchup and mustard" },
+                        { name: "Tejas", description: "Wrapped in bacon, topped with grilled onions, jalapeños, & CJ's Salsa" },
+                        { name: "German", description: "Grilled sauerkraut and spicy mustard" },
+                        { name: "Chili and Cheese", description: "Topped with chili and melted cheese" }
+                    ]
+                }
             }
         ];
 
