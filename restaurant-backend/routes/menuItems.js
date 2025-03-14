@@ -18,7 +18,7 @@ router.post('/', authenticate, authorizeAdmin, async (req, res, next) => {
 });
 
 // Get all menu items
-router.get('/', async (req, res) => {
+router.get('/', async (req, res, next) => {
     try {
         const menuItems = await MenuItem.find();
         res.status(200).json(menuItems);
@@ -29,7 +29,7 @@ router.get('/', async (req, res) => {
 });
 
 // Update a menu item
-router.put('/:id', authenticate, authorizeAdmin, async (req, res) => {
+router.put('/:id', authenticate, authorizeAdmin, async (req, res, next) => {
     try {
         const menuItem = await MenuItem.findByIdAndUpdate(req.params.id, req.body, { new: true });
         if (!menuItem) return res.status(404).json({ message: 'Menu item not found' });
@@ -41,7 +41,7 @@ router.put('/:id', authenticate, authorizeAdmin, async (req, res) => {
 });
 
 // Delete a menu item
-router.delete('/:id', authenticate, authorizeAdmin, async (req, res) => {
+router.delete('/:id', authenticate, authorizeAdmin, async (req, res, next) => {
     try {
         const menuItem = await MenuItem.findByIdAndDelete(req.params.id);
         if (!menuItem) return res.status(404).json({ message: 'Menu item not found' });

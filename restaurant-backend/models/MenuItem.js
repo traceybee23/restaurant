@@ -7,14 +7,27 @@ const menuItemSchema = new mongoose.Schema({
     category: { type: String, required: true },
     availability: { type: Boolean, default: true },
     options: {
-        sizes: [
-            {
-                size: { type: String, required: true },
-                price: { type: Number, required: true }
-            }
-        ],
-        sauces: [{ type: String }],
-        dippingSauces: [{ type: String }]
+        type: {
+            sizes: [
+                {
+                    size: { type: String },
+                    price: { type: Number }
+                }
+            ],
+            sauces: [{ type: String }],
+            dippingSauces: [{ type: String }],
+            sauceToss: {
+                available: { type: Boolean, default: false },
+                price: { type: Number }
+            },
+            addProtein: [
+                {
+                    name: { type: String },
+                    price: { type: Number }
+                }
+            ]
+        },
+        default: undefined // Ensures `options` is only included if data is provided
     }
 }, { timestamps: true }); // Adds createdAt and updatedAt fields
 
